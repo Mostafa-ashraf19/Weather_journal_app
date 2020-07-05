@@ -1,7 +1,7 @@
 /* Global Variables */
 let ZipCode,Feelings;
 const GenButton =  document.getElementById('generate');
-const baseURL = 'https://api.openweathermap.org/data/2.5/weather?id=';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 // API credentials
 const apiKey = '&appid=b205288d70932f9796615322abc43326'; 
 // Create a new date instance dynamically with JS
@@ -18,10 +18,10 @@ function Action(){
         document.getElementById('feelings').value='';
         
         // const TempData =  getDataFromSite(baseURL,ZipCode,apiKey);//then
-
+        // +',us')
         getDataFromSite(baseURL,ZipCode,apiKey)
         .then(function(data){ // async function
-            // console.log(data);
+            console.log(data);
             // console.log(data.weather[0].description);
             let dic = {date:newDate,temp:data.main.temp, City:data.name, weather: data.weather[0].description ,Feeling:Feelings};
             PostData('/all',dic); // push data
@@ -74,9 +74,9 @@ const upDateUI = async ()=> {
         const dataFetched  = await results.json();
         console.log('data fetched ',dataFetched);
         // console.log(' dd' , dataFetched.date);
-        document.getElementById('date').textContent = 'Date today: '+ dataFetched.date + ' in ' + dataFetched.City + ' City ';
-        document.getElementById('temp').textContent = 'Current Temperature '+ dataFetched.temp + ' Weather is ' + dataFetched.weather ;
-        document.getElementById('content').textContent = 'Your Feelings ' + dataFetched.Feeling;
+        document.getElementById('date').innerHTML = 'Date today: '+ dataFetched.date + ' in ' + dataFetched.City + ' City ';
+        document.getElementById('temp').innerHTML = 'Current Temperature '+ dataFetched.temp + ' Weather is ' + dataFetched.weather ;
+        document.getElementById('content').innerHTML = 'Your Feelings ' + dataFetched.Feeling;
 
     }catch(err){console.log('updateui fetch error ',err);}
 }
