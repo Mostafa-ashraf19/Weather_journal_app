@@ -1,0 +1,58 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.headline {
+    text-align: center;
+    font-size: 50px;
+}
+
+.zip{
+    text-align: center;
+    padding: 30px;
+    background-color: lightblue;
+}
+.zip label {
+    font-size: 30px; 
+}
+.zip input {
+    font-size: 20px; 
+}
+.feel
+{
+    text-align: center;
+    background-color: lightgray;
+    padding: 10px;
+}
+.feel label
+{
+    display: block;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.feel textarea
+{
+    display: block;
+    margin:  20px auto;
+    padding: 10px;
+    font-size: 20px; 
+}
+.feel button 
+{
+    font-size: 20px;
+    padding: 10px;
+}
+.entry
+{
+    text-align: center;
+    padding: 30px;
+    background-color: lightblue;
+}
+.entry .title
+{
+    margin-bottom: 20px;
+}
