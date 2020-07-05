@@ -5,9 +5,9 @@ asynchronous web app that uses Web OpenWeatherMap APIs and user data to dynamica
 
 ## requirements 
 
-1- install nodeJS https://nodejs.org/en/download/
+1- install nodeJS ` https://nodejs.org/en/download/ `
 
-2- npm install express and cors 
+2- run command ` npm install `  
 
 ## Project Specifications
 
