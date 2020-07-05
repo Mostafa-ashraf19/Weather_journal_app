@@ -1,5 +1,5 @@
 # Weather_journal_app
-asynchronous web app that uses Web OpenWeatherMap APIs and user data to dynamically update the UI 
+asynchronous web app that uses Web OpenWeatherMap APIs and user data to dynamically update the UI using nodeJs and express 
 
 ![Image](https://raw.githubusercontent.com/Mostafa-ashraf19/Weather_journal_app/master/image/Weather%20Journal%20App%20example.JPG)
 
