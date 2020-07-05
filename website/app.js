@@ -18,8 +18,8 @@ function Action(){
         document.getElementById('feelings').value='';
         
         // const TempData =  getDataFromSite(baseURL,ZipCode,apiKey);//then
-        // +',us')
-        getDataFromSite(baseURL,ZipCode,apiKey)
+    
+        getDataFromSite(baseURL,ZipCode,apiKey) // zipcode 
         .then(function(data){ // async function
             console.log(data);
             // console.log(data.weather[0].description);
