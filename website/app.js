@@ -3,7 +3,7 @@ let ZipCode,Feelings;
 const GenButton =  document.getElementById('generate');
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 // API credentials
-const apiKey = '&appid=b205288d70932f9796615322abc43326'; 
+const apiKey = '&appid=b205288d70932f9796615322abc43326&units=imperial'; 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -18,16 +18,24 @@ function Action(){
         document.getElementById('feelings').value='';
         
         // const TempData =  getDataFromSite(baseURL,ZipCode,apiKey);//then
-    
-        getDataFromSite(baseURL,ZipCode,apiKey) // zipcode 
+        getDataFromSite(baseURL,ZipCode,apiKey)
         .then(function(data){ // async function
             console.log(data);
             // console.log(data.weather[0].description);
-            let dic = {date:newDate,temp:data.main.temp, City:data.name, weather: data.weather[0].description ,Feeling:Feelings};
-            PostData('/all',dic); // push data
-            // console.log(dic);
+            let val =  data.cod == 200 ? true : false;
+
+            if(val == true)
+             {
+                let dic = {date:newDate,temp:data.main.temp, City:data.name, weather: data.weather[0].description ,Feeling:Feelings};
+                PostData('/all',dic); // push data 
+             }
+        return val;
         })
-        .then(upDateUI) // get data then update ui
+        .then(
+           async (val)=>{
+                upDateUI(val);
+        }
+        ) // get data then update ui
     }
     else {alert('Empty Fields\nPlease Set Values'); return '';}
 }
@@ -41,12 +49,12 @@ const getDataFromSite = async (URL,CityId,key)=>{
         return data;
     }catch(err){
         console.log(err);
+        // return false;
     }
 
 }
 
-const PostData = async (url = '',data = {}) => {
-    
+const PostData = async (url = '',data = {}) => {   
     const response = await fetch(url,{
         method: 'POST',
         credentials: 'same-origin',
@@ -68,7 +76,9 @@ const PostData = async (url = '',data = {}) => {
 }
 
 // update ui depend on date from openWeatherMap API
-const upDateUI = async ()=> {
+const upDateUI = async (val)=> {
+    if(val)
+    {
     const results = await fetch('/all');
     try{
         const dataFetched  = await results.json();
@@ -78,5 +88,11 @@ const upDateUI = async ()=> {
         document.getElementById('temp').innerHTML = 'Current Temperature '+ dataFetched.temp + ' Weather is ' + dataFetched.weather ;
         document.getElementById('content').innerHTML = 'Your Feelings ' + dataFetched.Feeling;
 
-    }catch(err){console.log('updateui fetch error ',err);}
+    }catch(err){console.log('updateui fetch error ',err);}}
+    else
+    {
+        document.getElementById('date').innerHTML = 'Date today: '+ newDate ;
+        document.getElementById('temp').innerHTML = 'City Not Found' ;
+        document.getElementById('content').innerHTML = 'Your Feelings ' + Feelings;   
+    }
 }
