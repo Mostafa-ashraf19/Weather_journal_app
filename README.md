@@ -3,6 +3,11 @@ asynchronous web app that uses Web OpenWeatherMap APIs and user data to dynamica
 
 ![Image](https://raw.githubusercontent.com/Mostafa-ashraf19/Weather_journal_app/master/image/Weather%20Journal%20App%20example.JPG)
 
+## requirements 
+
+1- install nodeJS https://nodejs.org/en/download/
+
+2- npm install express and cors 
 
 ## Project Specifications
 
